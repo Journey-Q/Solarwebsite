@@ -97,7 +97,7 @@ export default function OurProducts() {
   const visibleProducts = getVisibleProducts()
 
   return (
-    <section className="py-6 bg-gray-50 overflow-hidden relative">
+    <section className="py-6 bg-gray-50 overflow-hidden relative" id="products">
       {/* Navigation Buttons - Outside Container at Start and End */}
       <Button
         onClick={prevSlide}

@@ -4,7 +4,7 @@ import { Check } from "lucide-react"
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50" id="about">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           {/* Left side - 3D Building Image */}

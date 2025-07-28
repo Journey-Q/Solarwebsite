@@ -15,11 +15,11 @@ const Hero: React.FC = () => {
 
   // Gallery images
    const galleryImages = [
-    "/fitiing1.jpg",
-    "/fitiing2.jpg",
-    "/fitiing3.jpg",
-    "/fitiing4.jpg",
-    "/fitiing5.jpg"
+    "https://www.glssolution.com/gallery/18/get-image",
+    "https://www.glssolution.com/gallery/21/get-image",
+    "https://www.glssolution.com/gallery/29/get-image",
+    "https://www.glssolution.com/gallery/10/get-image",
+    "https://www.glssolution.com/gallery/19/get-image"
   ]
 
   // Stats data
@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
   }
 
   return (
-    <div>
+    <div id="home">
       
       {/* Hero Section */}
       <section className="h-screen text-white relative overflow-hidden">
@@ -70,22 +70,7 @@ const Hero: React.FC = () => {
           <div className="absolute inset-0 bg-black/30" />
         </div>
 
-        {/* Background Carousel Indicators */}
-        <div className="absolute top-32 right-6 z-30">
-          <div className="flex space-x-2">
-            {backgroundImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentBgImage(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentBgImage 
-                    ? 'bg-green-400 w-8' 
-                    : 'bg-white/30 hover:bg-white/50'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
+     
         
         <div className="container mx-auto px-4 relative z-20 h-full">
           <div className="flex flex-col items-center justify-start pt-32 h-full text-center space-y-8">
@@ -138,7 +123,7 @@ const Hero: React.FC = () => {
       </section>
 
       {/* Our Works Section */}
-      <section className="min-h-screen py-16 bg-gray-100">
+      <section className="min-h-screen py-16 bg-gray-100" id="works">
         <div className="container mx-auto px-4 h-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">

@@ -43,7 +43,7 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-2">
               <Link 
-                href="#" 
+                href="#home" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
@@ -53,7 +53,7 @@ export default function Header() {
                 Home
               </Link>
               <Link 
-                href="#" 
+                href="#about" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
@@ -63,7 +63,7 @@ export default function Header() {
                 About
               </Link>
               <Link 
-                href="#" 
+                href="#packages" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
@@ -73,7 +73,7 @@ export default function Header() {
                 Packages
               </Link>
               <Link 
-                href="#" 
+                href="#products" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
@@ -83,17 +83,17 @@ export default function Header() {
                 Products
               </Link>
               <Link 
-                href="#" 
+                href="#works" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/15"
                 }`}
               >
-                Gallery
+                Our Works
               </Link>
               <Link 
-                href="#" 
+                href="#promotion" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
@@ -103,7 +103,7 @@ export default function Header() {
                 Promotion
               </Link>
               <Link 
-                href="#" 
+                href="#contact" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
@@ -140,7 +140,7 @@ export default function Header() {
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden p-3 text-white hover:text-green-400 transition-colors rounded-full border-2 border-white/30 hover:border-white/60 hover:bg-white/10 backdrop-blur-sm"
+                className="lg:hidden  text-gray-900 hover:text-green-400 transition-colors rounded-full"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <Menu size={24} />
@@ -183,52 +183,52 @@ export default function Header() {
           </div>
 
           {/* Mobile Navigation */}
-          <nav className="flex-1 px-6 py-8">
-            <div className="space-y-6">
+          <nav className="flex-1 px-6 py-2">
+            <div className="space-y-2">
               <Link
-                href="#"
+                href="#home"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
-                href="#"
+                href="#about"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link
-                href="#"
+                href="#packages"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Packages
               </Link>
               <Link
-                href="#"
+                href="#products"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Products
               </Link>
               <Link
-                href="#"
+                href="#works"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Gallery
+                Our works
               </Link>
               <Link
-                href="#"
+                href="#promotion"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Promotion
               </Link>
               <Link
-                href="#"
+                href="#contact"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >

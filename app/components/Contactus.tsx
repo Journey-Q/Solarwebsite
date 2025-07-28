@@ -40,7 +40,7 @@ export default function ContactUs() {
   const currentBranch = branches[selectedBranch]
 
   return (
-    <section className="bg-gray-50 mb-16">
+    <section className="bg-gray-50 mb-16" id="contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
