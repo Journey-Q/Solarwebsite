@@ -46,7 +46,7 @@ export default function Header() {
                 href="#home" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
-                    ? "text-primary-card bg-white/25" 
+                    ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/15"
                 }`}
               >
