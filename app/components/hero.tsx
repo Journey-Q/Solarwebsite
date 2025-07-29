@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
               </p>
               
               {/* CTA Button */}
-              <div className="pt-8 flex-col space-y-6">
+              <div className="pt-8 flex-col space-y-16">
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold border-0 px-10 py-6 text-xl rounded-full group shadow-lg hover:shadow-xl transition-all duration-300"
@@ -98,15 +98,14 @@ const Hero: React.FC = () => {
                   Get Estimate
                 </Button>
                  <div className="">
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 lg:grid-cols-3 gap-4">
                 {stats.map((stat, index) => (
                   <div key={index} className="bg-white/10 backdrop-blur-md rounded-2xl p-4 lg:p-6 border border-white/20 shadow-xl">
                     <div className="text-center">
-                      <div className="text-2xl mb-2">{stat.icon}</div>
                       <div className="text-2xl lg:text-3xl font-bold text-green-400 mb-1">
                         {stat.value}
                       </div>
-                      <div className="text-sm lg:text-base text-gray-300">
+                      <div className="text-xs lg:text-base text-gray-300">
                         {stat.label}
                       </div>
                     </div>
