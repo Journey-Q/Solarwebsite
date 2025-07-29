@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
               </p>
               
               {/* CTA Button */}
-              <div className="pt-8 ">
+              <div className="pt-8 flex-col space-y-6">
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold border-0 px-10 py-6 text-xl rounded-full group shadow-lg hover:shadow-xl transition-all duration-300"
@@ -97,11 +97,7 @@ const Hero: React.FC = () => {
                   <ArrowRight className="mr-3 h-6 w-6 group-hover:translate-x-1 transition-transform " />
                   Get Estimate
                 </Button>
-              </div>
-            </div>
-
-            {/* Bottom Stats Cards Section */}
-            <div className="absolute bottom-14 left-1/2 -translate-x-1/2 w-full max-w-6xl px-4">
+                 <div className="">
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                 {stats.map((stat, index) => (
                   <div key={index} className="bg-white/10 backdrop-blur-md rounded-2xl p-4 lg:p-6 border border-white/20 shadow-xl">
@@ -118,6 +114,10 @@ const Hero: React.FC = () => {
                 ))}
               </div>
             </div>
+              </div>
+            </div>
+
+           
           </div>
         </div>
       </section>
@@ -125,11 +125,11 @@ const Hero: React.FC = () => {
       {/* Our Works Section */}
       <section className="min-h-screen py-16 bg-gray-100" id="works">
         <div className="container mx-auto px-4 h-full">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               Our Works
             </h2>
-            <p className="text-gray-600 text-xl max-w-3xl mx-auto">
+            <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-tight">
               Explore our successful renewable energy projects and installations
             </p>
           </div>
@@ -158,27 +158,6 @@ const Hero: React.FC = () => {
               >
                 <ChevronRight className="h-6 w-6 group-hover:scale-110 transition-transform" />
               </button>
-            </div>
-            
-            {/* Gallery Thumbnail Strip */}
-            <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex space-x-3 bg-black/50 backdrop-blur-md px-6 py-3 rounded-full">
-              {galleryImages.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentGalleryImage(index)}
-                  className={`relative w-16 h-16 rounded-lg overflow-hidden transition-all duration-300 ${
-                    index === currentGalleryImage 
-                      ? 'ring-2 ring-green-400 scale-110' 
-                      : 'opacity-60 hover:opacity-100 hover:scale-105'
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`Thumbnail ${index + 1}`}
-                    className="w-full h-full object-cover object-center"
-                  />
-                </button>
-              ))}
             </div>
             
             {/* Gallery Counter */}
