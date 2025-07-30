@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ShoppingCart, User } from "lucide-react"
+import StickyProductBanner from "./Stickybanner"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -148,6 +149,7 @@ export default function Header() {
             </div>
           </div>
         </div>
+        <StickyProductBanner isScrolled={isScrolled} />
       </header>
 
       {/* Mobile Menu Overlay */}

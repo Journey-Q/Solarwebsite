@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
+import StickyProductBanner from "./Stickybanner"
 
 // Counter animation hook
 const useCountUp = (end: number, duration = 2000, start = 0) => {
@@ -132,7 +133,7 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="container mx-auto px-4 relative z-20 h-full">
-          <div className="flex flex-col items-center justify-start pt-32 h-full text-center space-y-8">
+          <div className="flex flex-col items-center justify-start pt-40 h-full text-center space-y-8">
             {/* Main Content */}
             <div className="max-w-4xl space-y-6 animate-fade-in-up">
               {/* Main Heading */}
@@ -150,7 +151,7 @@ const Hero: React.FC = () => {
               </p>
 
               {/* CTA Button */}
-              <div className="pt-8 flex-col space-y-12 animate-slide-in-up animation-delay-600">
+              <div className="pt-2 flex-col space-y-12 animate-slide-in-up animation-delay-600">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold border-0 px-10 py-6 text-xl rounded-full group shadow-2xl hover:shadow-green-500/25 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1"

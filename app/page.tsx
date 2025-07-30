@@ -11,11 +11,13 @@ import InvestorModules from "./components/investor-modules"
 import Footer from "./components/footer"
 import ContactUs from "./components/Contactus"
 import BecomeReseller from "./components/Directors"
+import StickyProductBanner from "./components/Stickybanner"
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <Header />
+      {/* <StickyProductBanner /> */}
       <Hero />
       <WhyChooesus />
       <OurServices />
