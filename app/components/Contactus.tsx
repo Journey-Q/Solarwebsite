@@ -40,10 +40,10 @@ export default function ContactUs() {
   const currentBranch = branches[selectedBranch]
 
   return (
-    <section className="bg-gray-50 mb-16" id="contact">
+    <section className="bg-gray-50 mb-10" id="contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-8 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Get In Touch</h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Visit us at any of our convenient locations. Our team is ready to help you harness the power of the sun.
@@ -52,7 +52,7 @@ export default function ContactUs() {
         </div>
 
         {/* Single Container with Three Sections */}
-        <Card className="overflow-hidden shadow-lg border-0 h-auto lg:h-[480px]">
+        <Card className="overflow-hidden  h-auto lg:h-[480px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 h-full">
             {/* Map Section */}
             <div className="lg:col-span-5 h-64 sm:h-80 lg:h-full order-1 lg:order-1">
@@ -68,7 +68,7 @@ export default function ContactUs() {
             </div>
 
             {/* Contact Details Section */}
-            <div className="lg:col-span-4 bg-white p-4 sm:p-6 flex flex-col border-b lg:border-b-0 lg:border-r border-gray-200 order-2 lg:order-2">
+            <div className="lg:col-span-4 bg-white p-4 sm:p-6 flex flex-col  order-2 lg:order-2">
               <div className="text-center mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">{currentBranch.name}</h3>
               </div>
@@ -127,7 +127,7 @@ export default function ContactUs() {
             </div>
 
             {/* Branches Section */}
-            <div className="lg:col-span-3 bg-white p-4 sm:p-6 flex flex-col max-h-96 lg:max-h-none lg:overflow-y-auto order-3 lg:order-3">
+            <div className="lg:col-span-3 bg-white p-4 sm:p-6 flex flex-col md:max-h-120 lg:max-h-none  order-3 lg:order-3">
               <div className="mb-4 sm:mb-6">
                 <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 flex items-center">
                   <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mr-2" />
@@ -136,7 +136,7 @@ export default function ContactUs() {
                 <div className="w-16 h-0.5 bg-green-500 rounded-full" />
               </div>
 
-              <div className="flex-1 space-y-3 sm:space-y-4 overflow-y-auto">
+              <div className="flex-1 space-y-3 sm:space-y-4 md:overflow-y-auto">
                 {branches.map((branch, index) => (
                   <button
                     key={index}
@@ -162,16 +162,7 @@ export default function ContactUs() {
                           {branch.name}
                         </h5>
                         <p className="text-xs text-gray-600 mb-2 sm:mb-3 leading-relaxed">{branch.address}</p>
-                        <div className="space-y-1">
-                          <div className="flex items-center space-x-2 text-xs text-gray-500">
-                            <Phone className="w-3 h-3 flex-shrink-0" />
-                            <span className="truncate">{branch.phone}</span>
-                          </div>
-                          <div className="flex items-center space-x-2 text-xs text-gray-500">
-                            <Clock className="w-3 h-3 flex-shrink-0" />
-                            <span className="truncate">{branch.hours}</span>
-                          </div>
-                        </div>
+                        
                       </div>
                     </div>
                   </button>

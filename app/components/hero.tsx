@@ -125,12 +125,7 @@ const Hero: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50" />
         </div>
 
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-2 h-2 bg-green-400 rounded-full animate-pulse opacity-60"></div>
-          <div className="absolute top-40 right-20 w-1 h-1 bg-white rounded-full animate-ping opacity-40"></div>
-          <div className="absolute bottom-40 left-20 w-3 h-3 bg-green-300 rounded-full animate-bounce opacity-30"></div>
-        </div>
+       
 
         <div className="container mx-auto px-4 relative z-20 h-full">
           <div className="flex flex-col items-center justify-start pt-40 h-full text-center space-y-8">

@@ -104,7 +104,7 @@ const StickyProductBanner = ({ onClose, isScrolled }: StickyProductBannerProps) 
             <div
               key={`first-${product.id}`}
               onClick={() => handleProductClick(product)}
-              className="flex items-center space-x-3 bg-white/45 backdrop-blur-xl rounded-lg px-4 py-2 cursor-pointer hover:bg-white/20 transition-all duration-300 transform hover:scale-105 min-w-max group"
+              className="flex items-center space-x-3 bg-white rounded-lg px-4 py-2 cursor-pointer  transition-all duration-300 transform hover:scale-105 min-w-max group"
             >
               <img
                 src={product.image}
@@ -112,11 +112,11 @@ const StickyProductBanner = ({ onClose, isScrolled }: StickyProductBannerProps) 
                 className="w-12 h-12 rounded-lg object-cover border-2 border-white/20 group-hover:border-white/40 transition-colors"
               />
               <div className="text-left">
-                <h4 className={` ${!isScrolled ? "text-white" : "text-gray-900"} font-semibold text-sm group-hover:text-green-100 transition-colors`}>
+                <h4 className={` text-gray-900 font-semibold text-sm transition-colors`}>
                   {product.name}
                 </h4>
                 <div className="flex items-center space-x-2">
-                  <span className="text-green-600 font-bold text-lg">
+                  <span className="text-green-500 font-bold text-lg">
                     {product.price}
                   </span>
                   <span className="text-white/60 text-sm line-through">
@@ -136,7 +136,7 @@ const StickyProductBanner = ({ onClose, isScrolled }: StickyProductBannerProps) 
             <div
               key={`second-${product.id}`}
               onClick={() => handleProductClick(product)}
-              className="flex items-center space-x-3 bg-white/45 backdrop-blur-xl rounded-lg px-4 py-2 cursor-pointer hover:bg-white/20 transition-all duration-300 transform hover:scale-105 min-w-max group"
+              className="flex items-center space-x-3 bg-white rounded-lg px-4 py-2 cursor-pointer transition-all duration-300 transform hover:scale-105 min-w-max group"
             >
               <img
                 src={product.image}
@@ -144,11 +144,11 @@ const StickyProductBanner = ({ onClose, isScrolled }: StickyProductBannerProps) 
                 className="w-12 h-12 rounded-lg object-cover border-2 border-white/20 group-hover:border-white/40 transition-colors"
               />
               <div className="text-left">
-                <h4 className={` ${!isScrolled ? "text-white" : "text-gray-900"} font-semibold text-sm group-hover:text-green-100 transition-colors`}>
+                 <h4 className={` text-gray-900 font-semibold text-sm transition-colors`}>
                   {product.name}
                 </h4>
                 <div className="flex items-center space-x-2">
-                  <span className="text-green-600 font-bold text-lg">
+                  <span className="text-green-500 font-bold text-lg">
                     {product.price}
                   </span>
                   <span className="text-white/60 text-sm line-through">

@@ -4,12 +4,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Star, Quote, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react"
 import Image from "next/image"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({})
-  const [isMobile, setIsMobile] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const testimonials = [
@@ -50,16 +49,6 @@ export default function Testimonials() {
     },
   ]
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
   const toggleExpanded = (index: number) => {
     setExpandedCards(prev => ({
       ...prev,
@@ -74,12 +63,9 @@ export default function Testimonials() {
 
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
-      const cardWidth = isMobile ? 280 : 320 // Card width
-      const gap = isMobile ? 16 : 24
-      const scrollPosition = index * (cardWidth + gap)
-      
+      const cardWidth = 320 // Card width + gap
       scrollRef.current.scrollTo({
-        left: scrollPosition,
+        left: index * cardWidth,
         behavior: "smooth",
       })
       setCurrentIndex(index)
@@ -87,14 +73,12 @@ export default function Testimonials() {
   }
 
   const scrollLeft = () => {
-    const maxIndex = isMobile ? testimonials.length - 1 : testimonials.length - 3
-    const newIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : testimonials.length - 3
     scrollToIndex(newIndex)
   }
 
   const scrollRight = () => {
-    const maxIndex = isMobile ? testimonials.length - 1 : testimonials.length - 3
-    const newIndex = currentIndex < maxIndex ? currentIndex + 1 : 0
+    const newIndex = currentIndex < testimonials.length - 3 ? currentIndex + 1 : 0
     scrollToIndex(newIndex)
   }
 
@@ -112,26 +96,22 @@ export default function Testimonials() {
           <p className="text-gray-600 max-w-xl mx-auto">See what our customers say about their solar experience</p>
         </div>
 
-        {/* Carousel Container with External Arrows - Hidden on Mobile */}
+        {/* Carousel Container with External Arrows */}
         <div className="relative flex items-center">
-          {/* Left Navigation Arrow - Hidden on Mobile */}
-          {!isMobile && (
-            <Button
-              variant="outline"
-              size="icon"
-              className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 mr-4"
-              onClick={scrollLeft}
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-          )}
+          {/* Left Navigation Arrow - Outside Container */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 mr-4"
+            onClick={scrollLeft}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </Button>
 
           {/* Testimonials Scroll Container */}
           <div
             ref={scrollRef}
-            className={`flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 flex-1 ${
-              isMobile ? 'px-4' : ''
-            }`}
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 flex-1"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {testimonials.map((testimonial, index) => {
@@ -141,7 +121,7 @@ export default function Testimonials() {
               return (
                 <Card
                   key={index}
-                  className="group flex-shrink-0 w-72 md:w-80 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white border-0 shadow-md"
+                  className="group flex-shrink-0 w-80 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white border-0 shadow-md"
                 >
                   <CardContent className="p-6">
                     {/* Profile Section */}
@@ -202,44 +182,37 @@ export default function Testimonials() {
                       </div>
                     )}
 
-                    {/* Decorative element */}
-                    <div className="absolute top-0 right-0 w-16 h-16 bg-green-50 rounded-bl-3xl opacity-50" />
+                    
                   </CardContent>
                 </Card>
               )
             })}
           </div>
 
-          {/* Right Navigation Arrow - Hidden on Mobile */}
-          {!isMobile && (
-            <Button
-              variant="outline"
-              size="icon"
-              className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 ml-4"
-              onClick={scrollRight}
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          )}
+          {/* Right Navigation Arrow - Outside Container */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 ml-4"
+            onClick={scrollRight}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </Button>
         </div>
 
         {/* Dots Indicator */}
         <div className="flex justify-center mt-6 space-x-2">
-          {testimonials.map((_, index) => {
-            const maxIndex = isMobile ? testimonials.length - 1 : Math.max(1, testimonials.length - 2)
-            
-            return (
-              <button
-                key={index}
-                onClick={() => scrollToIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-green-500 w-6"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-              />
-            )
-          })}
+          {Array.from({ length: Math.max(1, testimonials.length - 2) }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-green-500 w-6"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+            />
+          ))}
         </div>
       </div>
 

@@ -471,7 +471,7 @@ export default function Packages() {
                   </div>
 
                   {/* Get Estimate Button - Moved to bottom */}
-                  <Button className="bg-green-500 hover:bg-green-600 text-white w-full py-3 text-base font-semibold transition-all duration-300 hover:scale-105">
+                  <Button className="bg-gray-900 hover:bg-green-600 text-white w-full py-3 text-base font-semibold transition-all duration-300 hover:scale-105">
                     Get Estimate
                   </Button>
                 </div>
@@ -552,16 +552,6 @@ export default function Packages() {
                       </div>
                     </div>
                              
-                    {/* Get Estimate Button */}
-                    <Button
-                      className="w-full bg-green-500 hover:bg-green-600 text-white py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        // Handle estimate request
-                      }}
-                    >
-                      Get Estimate
-                    </Button>
                   </CardContent>
                 </Card>
               ))}
