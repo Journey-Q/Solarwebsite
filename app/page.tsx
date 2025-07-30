@@ -4,12 +4,13 @@ import WhyChooesus from "./components/how-we-help"
 import Packages from "./components/packages"
 import LatestProducts from "./components/latest-products"
 import OurProducts from "./components/our-products"
-import Gallery from "./components/gallery"
+import OurServices from "./components/Our-services"
 import FacebookPost from "./components/facebook-post"
 import Testimonials from "./components/testimonials"
 import InvestorModules from "./components/investor-modules"
 import Footer from "./components/footer"
 import ContactUs from "./components/Contactus"
+import BecomeReseller from "./components/Directors"
 
 export default function Home() {
   return (
@@ -17,9 +18,11 @@ export default function Home() {
       <Header />
       <Hero />
       <WhyChooesus />
+      <OurServices />
       <Packages />
       <LatestProducts />
       <OurProducts />
+      <BecomeReseller />
       <FacebookPost />
       <Testimonials />
       <InvestorModules />

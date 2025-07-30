@@ -1,107 +1,175 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Heart, ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react"
 
-export default function OurProducts() {
-  const [currentIndex, setCurrentIndex] = useState(2)
+export default function OurProductsCategory() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
 
-  const products = [
-  {
-    id: 1,
-    name: "Solar System 60W",
-    description: "Compact solar solution perfect for small homes and basic lighting needs. Includes solar panel, battery, and LED lights.",
-    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
-    price: "Rs.30,000",
-    originalPrice: "Rs.35,000",
-    discount: "14%",
-    isNew: false,
-  },
-  {
-    id: 2,
-    name: "Solar System 80W",
-    description: "Enhanced capacity system ideal for medium households. Powers multiple appliances with reliable backup power.",
-    image: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
-    price: "Rs.38,000",
-    originalPrice: "Rs.42,000",
-    discount: "10%",
-    isNew: true,
-  },
-  {
-    id: 3,
-    name: "Solar System 100W",
-    description: "Popular mid-range system suitable for average homes. Includes inverter, charge controller, and premium batteries.",
-    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
-    price: "Rs.45,000",
-    originalPrice: "Rs.50,000",
-    discount: "10%",
-    isNew: false,
-  },
-  {
-    id: 4,
-    name: "Solar System 120W",
-    description: "Advanced solar setup for larger households. Features smart monitoring and efficient energy management system.",
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
-    price: "Rs.55,000",
-    originalPrice: "Rs.62,000",
-    discount: "11%",
-    isNew: true,
-  },
-  {
-    id: 5,
-    name: "Solar System 150W",
-    description: "High-capacity system designed for energy-intensive homes. Supports heavy appliances and extended backup time.",
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
-    price: "Rs.68,000",
-    originalPrice: "Rs.75,000",
-    discount: "9%",
-    isNew: false,
-  },
-  {
-    id: 6,
-    name: "Solar System 200W",
-    description: "Premium solar solution for maximum energy independence. Complete off-grid capability with professional installation.",
-    image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
-    price: "Rs.85,000",
-    originalPrice: "Rs.95,000",
-    discount: "11%",
-    isNew: true,
-  },
-];
+  const productCategories = [
+    {
+      id: 1,
+      name: "Solar Panels",
+      description: "High-efficiency monocrystalline and polycrystalline solar panels. Premium quality with 25-year warranty and maximum power output.",
+      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
+      price: "Rs.15,000",
+      category: "Solar Panels"
+    },
+    {
+      id: 2,
+      name: "Lithium Batteries",
+      description: "Advanced lithium-ion battery systems with long lifespan and fast charging. Deep cycle batteries for reliable energy storage.",
+      image: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
+      price: "Rs.25,000",
+      category: "Batteries"
+    },
+    {
+      id: 3,
+      name: "Solar Inverters",
+      description: "Pure sine wave inverters with MPPT charge controllers. Smart grid-tie and off-grid solutions for optimal power conversion.",
+      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
+      price: "Rs.12,000",
+      category: "Inverters"
+    },
+    {
+      id: 4,
+      name: "Charge Controllers",
+      description: "MPPT and PWM charge controllers for maximum solar harvest. Intelligent battery management with LCD display and monitoring.",
+      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
+      price: "Rs.8,000",
+      category: "Controllers"
+    },
+    {
+      id: 5,
+      name: "Solar Accessories",
+      description: "Complete range of mounting systems, cables, fuses, and monitoring equipment. Professional-grade components for reliable installation.",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
+      price: "Rs.5,000",
+      category: "Accessories"
+    },
+    {
+      id: 6,
+      name: "Complete Solar Systems",
+      description: "Ready-to-install solar power systems. Includes panels, batteries, inverter, and all necessary components with professional installation.",
+      image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=300&h=200&fit=crop&crop=entropy&auto=format&q=80",
+      price: "Rs.85,000",
+      category: "Complete Systems"
+    },
+  ];
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Intersection Observer for translate animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Handle scroll events for mobile to update current index
+  useEffect(() => {
+    if (!isMobile || !scrollRef.current) return
+
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const scrollLeft = scrollRef.current.scrollLeft
+        const cardWidth = scrollRef.current.clientWidth // Full width on mobile
+        const newIndex = Math.round(scrollLeft / cardWidth)
+        setCurrentIndex(newIndex)
+      }
+    }
+
+    const scrollElement = scrollRef.current
+    scrollElement.addEventListener('scroll', handleScroll)
+    return () => scrollElement.removeEventListener('scroll', handleScroll)
+  }, [isMobile])
+
+  const scrollToIndex = (index: number) => {
+    if (scrollRef.current) {
+      if (isMobile) {
+        // On mobile, scroll to full width of container
+        const cardWidth = scrollRef.current.clientWidth
+        const scrollPosition = index * cardWidth
+        
+        scrollRef.current.scrollTo({
+          left: scrollPosition,
+          behavior: "smooth",
+        })
+      } else {
+        // Desktop behavior remains the same
+        const cardWidth = 300
+        const gap = 24
+        const scrollPosition = index * (cardWidth + gap)
+        
+        scrollRef.current.scrollTo({
+          left: scrollPosition,
+          behavior: "smooth",
+        })
+      }
+      setCurrentIndex(index)
+    }
+  }
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length)
+    const maxIndex = isMobile ? productCategories.length - 1 : productCategories.length - 3
+    const newIndex = currentIndex < maxIndex ? currentIndex + 1 : 0
+    scrollToIndex(newIndex)
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length)
+    const maxIndex = isMobile ? productCategories.length - 1 : productCategories.length - 3
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex
+    scrollToIndex(newIndex)
   }
-
-  const getVisibleProducts = () => {
-    const visible = []
-    for (let i = -2; i <= 2; i++) {
-      const index = (currentIndex + i + products.length) % products.length
-      visible.push({
-        ...products[index],
-        position: i,
-        isCenter: i === 0,
-      })
-    }
-    return visible
-  }
-
-  const visibleProducts = getVisibleProducts()
 
   return (
-    <section className="py-6 bg-gray-50 overflow-hidden relative" id="products">
-      {/* Navigation Buttons - Outside Container at Start and End */}
+    <section 
+      ref={sectionRef}
+      className={`py-16 bg-gray-50 overflow-hidden relative transform transition-all duration-1000 ease-out ${
+        isVisible 
+          ? 'translate-y-0 opacity-100' 
+          : 'translate-y-16 opacity-0'
+      }`} 
+      id="products"
+    >
+      {/* Navigation Buttons - Always visible but positioned differently on mobile */}
       <Button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-gray-300"
+        className={`absolute ${isMobile ? 'left-2 top-[45%]' : 'left-4 top-1/2'} -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-gray-300 transition-all duration-700 hover:scale-110 transform ${
+          isVisible 
+            ? 'translate-x-0 opacity-100' 
+            : '-translate-x-8 opacity-0'
+        }`}
         variant="outline"
         size="icon"
       >
@@ -110,7 +178,11 @@ export default function OurProducts() {
 
       <Button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-gray-300"
+        className={`absolute ${isMobile ? 'right-2 top-[45%]' : 'right-4 top-1/2'} -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-gray-300 transition-all duration-700 hover:scale-110 transform ${
+          isVisible 
+            ? 'translate-x-0 opacity-100' 
+            : 'translate-x-8 opacity-0'
+        }`}
         variant="outline"
         size="icon"
       >
@@ -119,98 +191,159 @@ export default function OurProducts() {
 
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-gray-900 mb-2">Our Products</h2>
+        <div className={`text-center mb-12 transform transition-all duration-800 delay-200 ${
+          isVisible 
+            ? 'translate-y-0 opacity-100' 
+            : 'translate-y-8 opacity-0'
+        }`}>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Product Categories</h2>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative">
-          {/* Products Carousel */}
-          <div className="flex items-center justify-center gap-4 px-16">
-            {visibleProducts.map((product) => (
-              <div key={`${product.id}-${product.position}`} className="flex-shrink-0 w-60">
-                <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-sm hover:shadow-md h-full">
-                  <CardContent className="p-0">
-                    <div className="relative h-full flex flex-col">
-                      {/* Product Image */}
-                      <div className="relative overflow-hidden rounded-t-2xl h-48">
-                        <Image
-                          src={product.image || "/placeholder.svg"}
-                          alt={product.name}
-                          fill
-                          className="object-cover"
-                        />
+        {/* Products Slider */}
+        <div className={`relative transform transition-all duration-1000 delay-400 ${
+          isVisible 
+            ? 'translate-y-0 opacity-100' 
+            : 'translate-y-12 opacity-0'
+        }`}>
+          <div 
+            ref={scrollRef}
+            className={`
+              ${isMobile 
+                ? 'flex overflow-x-auto snap-x snap-mandatory scrollbar-hide' 
+                : 'flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 px-16 justify-center'
+              }
+            `}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {productCategories.map((product, index) => (
+              <div
+                key={product.id}
+                className={`
+                  ${isMobile 
+                    ? 'flex-shrink-0 w-full snap-center px-4' 
+                    : 'flex-shrink-0'
+                  }
+                  transition-all duration-300 transform
+                  ${isVisible 
+                    ? 'translate-y-0 opacity-100' 
+                    : 'translate-y-16 opacity-0'
+                  }
+                `}
+                style={{
+                  width: isMobile ? "100%" : "280px",
+                  transitionDelay: `${600 + (index * 100)}ms`
+                }}
+              >
+                <div className={isMobile ? 'max-w-sm mx-auto' : ''}>
+                  <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full">
+                    <CardContent className="p-0">
+                      <div className="relative h-full flex flex-col">
+                        {/* Product Image */}
+                        <div className="relative overflow-hidden rounded-t-2xl h-48">
+                          <Image
+                            src={product.image || "/placeholder.svg"}
+                            alt={product.name}
+                            fill
+                            className="object-cover transition-transform duration-500 hover:scale-110"
+                          />
 
-                        {/* Top badges and icons */}
-                        <div className="absolute top-3 left-3 flex flex-col gap-2">
-                          {product.isNew && (
-                            <Badge className="bg-green-500 hover:bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-md">
-                              NEW
+                          {/* Top badges and icons */}
+                          <div className="absolute top-3 left-3 flex flex-col gap-2">
+                            <Badge className="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-md">
+                              {product.category}
                             </Badge>
-                          )}
-                          <Badge className="bg-red-500 hover:bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-md">
-                            -{product.discount}
-                          </Badge>
+                          </div>
+
+                          {/* Overlay for hover effect */}
+                          <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300"></div>
                         </div>
 
-                        {/* Shopping Cart icon */}
-                        <button className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:shadow-md">
-                         <ShoppingCart className="w-4 h-4 text-gray-600" />
-                        </button>
-                      </div>
+                        {/* Product Info */}
+                        <div className="p-4 flex-1 flex flex-col">
+                          <h3 className="font-semibold text-gray-900 mb-2 text-lg transition-colors duration-300">
+                            {product.name}
+                          </h3>
+                          
+                          {/* Product Description */}
+                          <p className="text-sm text-gray-600 mb-3 line-clamp-3 flex-1 leading-relaxed">
+                            {product.description}
+                          </p>
 
-                      {/* Product Info */}
-                      <div className="p-4 flex-1 flex flex-col">
-                        <h3 className="font-semibold text-gray-900 mb-2 text-lg">{product.name}</h3>
-                        
-                        {/* Product Description */}
-                        <p className="text-sm text-gray-600 mb-3 line-clamp-3 flex-1">{product.description}</p>
-
-                        {/* Price */}
-                        <div className="flex items-center gap-2 mb-4">
-                          <span className="text-lg font-bold text-gray-900">{product.price}</span>
-                          <span className="text-sm text-gray-500 line-through">{product.originalPrice}</span>
+                          {/* View Products Button */}
+                          <Button
+                            className="w-full bg-gray-800 hover:bg-green-500 text-white rounded-lg py-2 text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                            size="sm"
+                          >
+                            View Products
+                          </Button>
                         </div>
-
-                        {/* Add to Cart Button */}
-                        <Button
-                          className="w-full bg-gray-900 hover:bg-green-500 text-white rounded-lg py-2 text-sm font-medium"
-                          size="sm"
-                        >
-                          Add to Cart
-                        </Button>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             ))}
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 gap-2">
-            {products.map((_, index) => (
+          <div className={`flex justify-center mt-8 gap-2 transform transition-all duration-800 delay-700 ${
+            isVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-8 opacity-0'
+          }`}>
+            {productCategories.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                  index === currentIndex ? "bg-green-500 w-8" : "bg-gray-300 hover:bg-gray-400"
+                onClick={() => scrollToIndex(index)}
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? "bg-green-500 w-8 shadow-lg" 
+                    : "bg-gray-300 hover:bg-gray-400 w-3 hover:scale-125"
                 }`}
               />
             ))}
           </div>
         </div>
 
-        {/* View All Products Button */}
-        <div className="text-center mt-12">
+        {/* View Products Button */}
+        <div className={`text-center mt-12 transform transition-all duration-800 delay-900 ${
+          isVisible 
+            ? 'translate-y-0 opacity-100' 
+            : 'translate-y-8 opacity-0'
+        }`}>
           <Button
-            className="bg-gray-800 hover:bg-gray-900 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl"
+            className="bg-gray-800 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
             size="lg"
           >
-            View All Products
+            View Products
           </Button>
         </div>
       </div>
+
+      {/* Custom CSS for scrollbar hiding and snap behavior */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        /* Ensure smooth scrolling and snap behavior on mobile */
+        @media (max-width: 767px) {
+          .snap-x {
+            scroll-snap-type: x mandatory;
+          }
+          
+          .snap-center {
+            scroll-snap-align: center;
+          }
+        }
+      `}</style>
     </section>
   )
 }

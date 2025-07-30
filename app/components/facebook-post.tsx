@@ -37,28 +37,28 @@ export default function FacebookSplitView() {
       <div id="fb-root"></div>
 
       {/* Left Side - Text and Description */}
-      <div className="w-full lg:w-1/2 p-6 lg:p-12 flex flex-col order-2 lg:order-1">
+      <div className="w-full lg:w-1/2 p-6 lg:p-12 flex flex-col order-2 lg:order-1 animate-[slideInLeft_0.8s_ease-out] lg:animate-[slideInLeft_1s_ease-out_0.2s_both]">
         <div className="max-w-lg mx-auto pt-4 lg:pt-8">
           {/* Main Heading */}
-          <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight text-center lg:text-left">
+          <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight text-center lg:text-left animate-[slideInLeft_1s_ease-out_0.3s_both]">
             Connect with Us on
             <br />
             <span className="text-blue-600">Facebook</span>
           </h1>
 
           {/* Description */}
-          <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 leading-relaxed text-center lg:text-left">
+          <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 leading-relaxed text-center lg:text-left animate-[slideInLeft_1s_ease-out_0.5s_both]">
             Stay updated with GLS Solution's latest solar innovations, sustainable energy projects, and join our
             community of eco-conscious customers and partners.
           </p>
 
           {/* CTA Button */}
-          <div className="flex justify-center lg:justify-start">
+          <div className="flex justify-center lg:justify-start animate-[slideInLeft_1s_ease-out_0.7s_both]">
             <a
               href="https://www.facebook.com/glssolution/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-6 lg:px-8 py-3 lg:py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 font-semibold text-sm lg:text-base shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-6 lg:px-8 py-3 lg:py-4 bg-blue-600 text-white rounded-lg transition-colors duration-300 font-semibold text-sm lg:text-base shadow-lg"
             >
               <svg className="w-5 h-5 lg:w-6 lg:h-6 mr-2 lg:mr-3" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -73,8 +73,8 @@ export default function FacebookSplitView() {
       </div>
 
       {/* Right Side - Phone Frame */}
-      <div className="w-full lg:w-1/2 p-6 lg:p-12 flex items-start justify-center pt-4 lg:pt-8 order-1 lg:order-2">
-        <div className="relative">
+      <div className="w-full lg:w-1/2 p-6 lg:p-12 flex items-start justify-center pt-4 lg:pt-8 order-1 lg:order-2 animate-[slideInRight_0.8s_ease-out] lg:animate-[slideInRight_1s_ease-out_0.4s_both]">
+        <div className="relative animate-[slideInUp_1s_ease-out_0.6s_both]">
           {/* iPhone Frame */}
          <div className="relative w-72 h-[580px] lg:w-79 lg:h-[620px] bg-gray-900 rounded-[40px] lg:rounded-[45px] p-1.5 lg:p-2 shadow-2xl">
             {/* Screen */}
@@ -106,6 +106,42 @@ export default function FacebookSplitView() {
           <div className="absolute right-[-2px] lg:right-[-3px] top-36 lg:top-44 w-0.5 lg:w-1 h-12 lg:h-16 bg-gray-700 rounded-r-sm"></div>
         </div>
       </div>
+
+      {/* Custom Animation Styles */}
+      <style jsx>{`
+        @keyframes slideInLeft {
+          from {
+            transform: translateX(-100px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            transform: translateX(100px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideInUp {
+          from {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   )
 }
