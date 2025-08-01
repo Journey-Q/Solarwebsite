@@ -15,7 +15,7 @@ import StickyProductBanner from "./components/Stickybanner"
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden m-0 p-0">
       <Header />
       {/* <StickyProductBanner /> */}
       <Hero />

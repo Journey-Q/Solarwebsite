@@ -52,15 +52,7 @@ const useCountUp = (end: number, duration = 2000, start = 0) => {
 }
 
 const Hero: React.FC = () => {
-  const [currentBgImage, setCurrentBgImage] = useState(0)
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0)
-
-  // Enhanced background carousel images
-  const backgroundImages = [
-    "/solar1.jpg",
-    "/solar2.jpg",
-    "/solar3.jpg",
-  ]
 
  const galleryImages = [
     "https://www.glssolution.com/gallery/18/get-image",
@@ -77,13 +69,6 @@ const Hero: React.FC = () => {
     { label: "Years Experience", value: 15, suffix: "+", icon: "" },
   ]
 
-  // Auto-rotate background images
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBgImage((prev) => (prev + 1) % backgroundImages.length)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [backgroundImages.length])
 
   // Auto-rotate gallery images
   useEffect(() => {
@@ -102,33 +87,27 @@ const Hero: React.FC = () => {
   }
 
   return (
-    <div id="home">
+    <>
       {/* Hero Section */}
-      <section className="h-screen text-white relative overflow-hidden">
-        {/* Background Carousel */}
+      <section id="home" className="h-screen text-white relative overflow-hidden m-0 p-0">
+        {/* Background Video */}
         <div className="absolute inset-0">
-          {backgroundImages.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-all duration-2000 ease-in-out transform ${
-                index === currentBgImage ? "opacity-100 scale-100" : "opacity-0 scale-105"
-              }`}
-            >
-              <img
-                src={image || "/placeholder.svg"}
-                alt={`Solar panels background ${index + 1}`}
-                className="w-full h-full object-cover object-center brightness-80"
-                style={{ objectPosition: "center center" }}
-              />
-            </div>
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover object-center brightness-100"
+          >
+            <source src="/video2.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/40" />
         </div>
 
        
 
         <div className="container mx-auto px-4 relative z-20 h-full">
-          <div className="flex flex-col items-center justify-start pt-40 h-full text-center space-y-8">
+          <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
             {/* Main Content */}
             <div className="max-w-4xl space-y-6 animate-fade-in-up">
               {/* Main Heading */}
@@ -253,7 +232,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }
 

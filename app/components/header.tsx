@@ -93,7 +93,7 @@ export default function Header() {
               >
                 Our Works
               </Link>
-              <Link 
+              {/* <Link 
                 href="#promotion" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
@@ -102,7 +102,7 @@ export default function Header() {
                 }`}
               >
                 Promotion
-              </Link>
+              </Link> */}
               <Link 
                 href="#contact" 
                 className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
@@ -149,7 +149,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <StickyProductBanner isScrolled={isScrolled} />
+        
       </header>
 
       {/* Mobile Menu Overlay */}
@@ -222,13 +222,13 @@ export default function Header() {
               >
                 Our works
               </Link>
-              <Link
+              {/* <Link
                 href="#promotion"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Promotion
-              </Link>
+              </Link> */}
               <Link
                 href="#contact"
                 className="block text-gray-700 hover:text-green-500 transition-colors font-medium text-lg py-2"
