@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
           >
             <source src="/video2.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/40" />
+          <div className="absolute inset-0 " />
         </div>
 
        
