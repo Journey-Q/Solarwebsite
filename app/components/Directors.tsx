@@ -104,12 +104,12 @@ export default function OurDirectors() {
               {benefits.map((benefit, index) => (
                 <div 
                   key={index}
-                  className={`flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 ${
+                  className={`flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm transition-all duration-300 transform ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}
                   style={{ transitionDelay: `${0.7 + index * 0.2}s` }}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 group-hover:bg-green-200 transition-colors duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 transition-colors duration-300">
                     {benefit.icon}
                   </div>
                   <div>
@@ -125,14 +125,13 @@ export default function OurDirectors() {
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`} style={{ transitionDelay: '1.3s' }}>
               <Button 
-                className="bg-gray-900 hover:bg-green-600 text-white px-8 py-4 text-lg font-medium rounded-lg transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:-translate-y-1 group relative overflow-hidden"
+                className="bg-gray-900 text-white px-8 py-4 text-lg font-medium rounded-lg transition-all duration-500 transform"
                 size="lg"
               >
                 <span className="relative z-10 flex items-center">
                   Read More
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300" />
                 </span>
-               
               </Button>
             </div>
           </div>
@@ -147,7 +146,7 @@ export default function OurDirectors() {
               {directors.map((director, index) => (
                 <div 
                   key={director.id}
-                  className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 ${
+                  className={`bg-white rounded-2xl p-6 shadow-sm transition-all duration-500 transform ${
                     isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
                   }`}
                   style={{ transitionDelay: `${0.6 + index * 0.2}s` }}
@@ -160,11 +159,9 @@ export default function OurDirectors() {
                           alt={director.name}
                           width={128}
                           height={128}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500"
                         />
                       </div>
-            
-                     
                     </div>
                     
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{director.name}</h3>
@@ -175,8 +172,6 @@ export default function OurDirectors() {
             </div>
           </div>
         </div>
-
-        
       </div>
 
       {/* Background decoration */}

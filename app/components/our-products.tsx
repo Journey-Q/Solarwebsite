@@ -217,6 +217,7 @@ export default function OurProductsCategory() {
           >
             {productCategories.map((product, index) => (
               <div
+                onClick={() => scrollToIndex(index)}
                 key={product.id}
                 className={`
                   ${isMobile 
@@ -235,7 +236,7 @@ export default function OurProductsCategory() {
                 }}
               >
                 <div className={isMobile ? 'max-w-sm mx-auto' : ''}>
-                  <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full">
+                  <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-sm  transition-all duration-300 transform  h-full">
                     <CardContent className="p-0">
                       <div className="relative h-full flex flex-col">
                         {/* Product Image */}

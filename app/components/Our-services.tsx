@@ -216,11 +216,17 @@ export default function OurServices() {
                                 }}
                             >
                                 <div className={isMobile ? 'max-w-sm mx-auto' : ''}>
-                                    <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 h-full group relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-blue-500/5 before:to-green-500/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
+                                    <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-lg  transition-all duration-500 transform   h-full group relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-blue-500/5 before:to-green-500/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
                                         <CardContent className="p-0 relative z-10">
                                             <div className="relative h-full flex flex-col">
                                                 {/* Service Image */}
-                                                <div className="relative overflow-hidden rounded-t-2xl h-56 group">
+                                                <div
+                                                    className="relative overflow-hidden rounded-t-2xl h-56 group cursor-pointer"
+                                                    onClick={() => {
+                                                        // Add your onClick logic here, e.g. open modal, navigate, etc.
+                                                        console.log("Card clicked:", service.name)
+                                                    }}
+                                                >
                                                     <Image
                                                         src={service.image || "/placeholder.svg"}
                                                         alt={service.name}
@@ -295,18 +301,20 @@ export default function OurServices() {
                         ))}
                     </div>
 
-                    {/* Dots Indicator */}
-                    <div className="flex justify-center mt-8 gap-2 transition-all duration-1000">
-                        {services.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => scrollToIndex(index)}
-                                className={`h-3 rounded-full transition-all duration-500 transform hover:scale-125 ${index === currentIndex
-                                        ? "bg-gradient-to-r from-green-500 to-green-600 w-8 shadow-lg "
-                                        : "bg-gray-300 hover:bg-gray-400 w-3 hover:shadow-md"
-                                    }`}
-                            />
-                        ))}
+                    {/* Slider Indicator - Now consistent for both mobile and desktop */}
+                    <div className="flex justify-center mt-8 transition-all duration-1000">
+                        <div className="flex gap-2">
+                            {services.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => scrollToIndex(index)}
+                                    className={`h-3 w-3 rounded-full transition-all duration-500 transform hover:scale-125 ${index === currentIndex
+                                            ? "bg-gradient-to-r from-green-500 to-green-600 shadow-lg scale-110"
+                                            : "bg-gray-300 hover:bg-gray-400 hover:shadow-md"
+                                        }`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
 

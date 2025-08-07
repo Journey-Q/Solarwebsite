@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
                         <div
                           key={index}
                           ref={ref}
-                          className="bg-white/10 backdrop-blur-md rounded-2xl p-4 lg:p-6 border border-white/20 shadow-xl hover:bg-white/15 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group"
+                          className="bg-white/10 backdrop-blur-md rounded-2xl p-4 lg:p-6 border border-white/20 shadow-xl hover:bg-white/15 transition-all duration-500 transform "
                           style={{ animationDelay: `${index * 200}ms` }}
                         >
                           <div className="text-center">

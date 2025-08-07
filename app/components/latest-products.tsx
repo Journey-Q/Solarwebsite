@@ -161,7 +161,7 @@ export default function LatestProductsCarousel() {
   return (
     <section 
       ref={sectionRef}
-      className={`py-16 bg-gray-50 overflow-hidden relative transform transition-all duration-1000 ease-out ${
+      className={`py-16 bg-gray-50 overflow-x-hidden relative transform transition-all duration-1000 ease-out ${
         isVisible 
           ? 'translate-y-0 opacity-100' 
           : 'translate-y-16 opacity-0'
@@ -223,6 +223,7 @@ export default function LatestProductsCarousel() {
           >
             {products.map((product, index) => (
               <div
+                onClick={() => {}}
                 key={product.id}
                 className={`
                   ${isMobile 
@@ -242,7 +243,7 @@ export default function LatestProductsCarousel() {
                 }}
               >
                 <div className={isMobile ? 'max-w-sm mx-auto' : ''}>
-                  <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                  <Card className="bg-white rounded-2xl overflow-hidden border-0 shadow-sm  transition-all duration-300 transform ">
                     <CardContent className="p-0">
                       <div className="relative">
                         {/* Product Image */}

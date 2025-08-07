@@ -85,141 +85,139 @@ export default function Testimonials() {
   return (
     <section className="py-16 bg-slate-50">
       <div className="container mx-auto px-4 max-w-8xl">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 rounded-xl mb-4">
-            <Quote className="w-6 h-6 text-white" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900">
-            Customer Reviews
-          </h2>
-          <p className="text-gray-600 max-w-xl mx-auto">See what our customers say about their solar experience</p>
+      {/* Header */}
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 rounded-xl mb-4">
+        <Quote className="w-6 h-6 text-white" />
         </div>
+        <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900">
+        Customer Reviews
+        </h2>
+        <p className="text-gray-600 max-w-xl mx-auto">See what our customers say about their solar experience</p>
+      </div>
 
-        {/* Carousel Container with External Arrows */}
-        <div className="relative flex items-center">
-          {/* Left Navigation Arrow - Outside Container */}
-          <Button
-            variant="outline"
-            size="icon"
-            className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 mr-4"
-            onClick={scrollLeft}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
+      {/* Carousel Container with External Arrows */}
+      <div className="relative flex items-center">
+        {/* Left Navigation Arrow - Outside Container */}
+        <Button
+        variant="outline"
+        size="icon"
+        className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg mr-4"
+        onClick={scrollLeft}
+        >
+        <ChevronLeft className="w-5 h-5" />
+        </Button>
 
-          {/* Testimonials Scroll Container */}
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 flex-1"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {testimonials.map((testimonial, index) => {
-              const isExpanded = expandedCards[index]
-              const shouldShowButton = testimonial.text.length > 120
-              
-              return (
-                <Card
-                  key={index}
-                  className="group flex-shrink-0 w-80 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white border-0 shadow-md"
+        {/* Testimonials Scroll Container */}
+        <div
+        ref={scrollRef}
+        className="flex  gap-6 overflow-x-auto scrollbar-hide pb-4 flex-1"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+        {testimonials.map((testimonial, index) => {
+          const isExpanded = expandedCards[index]
+          const shouldShowButton = testimonial.text.length > 120
+          return (
+            <Card
+            key={index}
+            className="group flex-shrink-0 w-80 bg-white border-0 shadow-md transition-none"
+            style={{ minHeight: isExpanded ? "fit-content" : "fit-content" }}
+            >
+            <CardContent className="p-6">
+              {/* Profile Section */}
+              <div className="flex items-center mb-4">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-full p-[2px]">
+                <Image
+                  src={testimonial.image || "/placeholder.svg"}
+                  alt={testimonial.name}
+                  width={60}
+                  height={60}
+                  className="w-full h-full rounded-full object-cover bg-white p-[1px]"
+                />
+                </div>
+              </div>
+              <div className="ml-3 flex-1">
+                <h4 className="font-semibold text-gray-900 text-sm">{testimonial.name}</h4>
+                <p className="text-xs text-gray-500 uppercase tracking-wide">{testimonial.role}</p>
+              </div>
+              {/* Rating */}
+              <div className="flex">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              </div>
+
+              {/* Testimonial Text */}
+              <div className="relative">
+              <Quote className="absolute -top-1 -left-1 w-4 h-4 text-green-600 transform rotate-180" />
+              <p className="text-gray-700 text-sm leading-relaxed pl-3 pr-3 italic">
+                "{isExpanded ? testimonial.text : truncateText(testimonial.text)}"
+              </p>
+              <Quote className="absolute -bottom-1 -right-1 w-4 h-4 text-green-600" />
+              </div>
+
+              {/* Read More/Less Button */}
+              {shouldShowButton && (
+              <div className="mt-3 flex justify-center">
+                <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => toggleExpanded(index)}
+                className="text-gray-900 bg-transparent text-xs font-medium"
                 >
-                  <CardContent className="p-6">
-                    {/* Profile Section */}
-                    <div className="flex items-center mb-4">
-                      <div className="relative">
-                        <div className="w-12 h-12 rounded-full p-[2px]">
-                          <Image
-                            src={testimonial.image || "/placeholder.svg"}
-                            alt={testimonial.name}
-                            width={60}
-                            height={60}
-                            className="w-full h-full rounded-full object-cover bg-white p-[1px]"
-                          />
-                        </div>
-                      </div>
-                      <div className="ml-3 flex-1">
-                        <h4 className="font-semibold text-gray-900 text-sm">{testimonial.name}</h4>
-                        <p className="text-xs text-gray-500 uppercase tracking-wide">{testimonial.role}</p>
-                      </div>
-                      {/* Rating */}
-                      <div className="flex">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Testimonial Text */}
-                    <div className="relative">
-                      <Quote className="absolute -top-1 -left-1 w-4 h-4 text-green-600 transform rotate-180" />
-                      <p className="text-gray-700 text-sm leading-relaxed pl-3 pr-3 italic">
-                        "{isExpanded ? testimonial.text : truncateText(testimonial.text)}"
-                      </p>
-                      <Quote className="absolute -bottom-1 -right-1 w-4 h-4 text-green-600" />
-                    </div>
-
-                    {/* Read More/Less Button */}
-                    {shouldShowButton && (
-                      <div className="mt-3 flex justify-center">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => toggleExpanded(index)}
-                          className="text-gray-900 hover:text-green-700 hover:bg-green-50 text-xs font-medium"
-                        >
-                          {isExpanded ? (
-                            <>
-                              Read Less
-                              <ChevronUp className="w-3 h-3 ml-1" />
-                            </>
-                          ) : (
-                            <>
-                              Read More
-                              <ChevronDown className="w-3 h-3 ml-1" />
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                    )}
-
-                    
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-
-          {/* Right Navigation Arrow - Outside Container */}
-          <Button
-            variant="outline"
-            size="icon"
-            className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 ml-4"
-            onClick={scrollRight}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </Button>
+                {isExpanded ? (
+                  <>
+                  Read Less
+                  <ChevronUp className="w-3 h-3 ml-1" />
+                  </>
+                ) : (
+                  <>
+                  Read More
+                  <ChevronDown className="w-3 h-3 ml-1" />
+                  </>
+                )}
+                </Button>
+              </div>
+              )}
+            </CardContent>
+            </Card>
+          )
+          })}
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-6 space-x-2">
-          {Array.from({ length: Math.max(1, testimonials.length - 2) }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollToIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "bg-green-500 w-6"
-                  : "bg-gray-300 hover:bg-gray-400"
-              }`}
-            />
-          ))}
-        </div>
+        {/* Right Navigation Arrow - Outside Container */}
+        <Button
+        variant="outline"
+        size="icon"
+        className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border-gray-200 shadow-lg ml-4"
+        onClick={scrollRight}
+        >
+        <ChevronRight className="w-5 h-5" />
+        </Button>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-6 space-x-2">
+        {Array.from({ length: Math.max(1, testimonials.length - 2) }).map((_, index) => (
+        <button
+          key={index}
+          onClick={() => scrollToIndex(index)}
+          className={`w-2 h-2 rounded-full transition-none ${
+          index === currentIndex
+            ? "bg-green-500 w-6"
+            : "bg-gray-300"
+          }`}
+        />
+        ))}
+      </div>
       </div>
 
       <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
       `}</style>
     </section>
   )

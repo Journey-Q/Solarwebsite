@@ -24,7 +24,7 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/10 backdrop-blur-lg shadow-lg "
+            ? "bg-white/10 backdrop-blur-lg shadow-lg"
             : "bg-transparent"
         }`}
       >
@@ -45,50 +45,50 @@ export default function Header() {
             <nav className="hidden lg:flex items-center space-x-2">
               <Link 
                 href="#home" 
-                className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
-                    : "text-white bg-white/15"
+                    : "text-white bg-white/20"
                 }`}
               >
                 Home
               </Link>
               <Link 
                 href="#about" 
-                className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
-                    : "text-white bg-white/15"
+                    : "text-white bg-white/20"
                 }`}
               >
                 About
               </Link>
               <Link 
                 href="#packages" 
-                className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
-                    : "text-white bg-white/15"
+                    : "text-white bg-white/20"
                 }`}
               >
                 Packages
               </Link>
               <Link 
                 href="#products" 
-                className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
-                    : "text-white bg-white/15"
+                    : "text-white bg-white/20"
                 }`}
               >
                 Products
               </Link>
               <Link 
                 href="#works" 
-                className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
-                    : "text-white bg-white/15"
+                    : "text-white bg-white/20"
                 }`}
               >
                 Our Works
@@ -105,10 +105,10 @@ export default function Header() {
               </Link> */}
               <Link 
                 href="#contact" 
-                className={`font-medium text-sm px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
-                    : "text-white bg-white/15"
+                    : "text-white bg-white/20"
                 }`}
               >
                 Contact
@@ -141,7 +141,7 @@ export default function Header() {
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden  text-gray-900 hover:text-green-400 transition-colors rounded-full"
+                className="lg:hidden  text-green-700 transition-colors rounded-full p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <Menu size={24} />

@@ -27,6 +27,12 @@ export default function Packages() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
 
+  // Dummy getEstimate function to prevent errors
+  const getEstimate = (pkg: Package) => {
+    // You can implement your logic here, e.g., open a modal or redirect
+    alert(`Estimate requested for ${pkg.name} package.`)
+  }
+
   const packages: Package[] = [
     {
       id: "basic",
@@ -223,9 +229,10 @@ export default function Packages() {
                 <div
                   key={pkg.id}
                   className="flex-shrink-0 w-full snap-center px-4"
+                  onClick={() => { }}
                 >
                   <div className="max-w-sm mx-auto">
-                    <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden h-full transform transition-all duration-500 hover:scale-105">
+                    <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden h-full transition-all duration-500">
                       {/* Mobile Image */}
                       <div className="relative h-48 sm:h-64">
                         <Image
@@ -235,7 +242,7 @@ export default function Packages() {
                           className="object-cover transition-all duration-700 ease-in-out"
                         />
                         {/* Discount Badge on Image */}
-                        <div className="absolute top-3 left-3 bg-red-500 text-white font-bold px-2 py-1 rounded-lg text-xs sm:text-sm animate-pulse">
+                        <div className="absolute top-3 left-3 bg-red-500 text-white font-bold px-2 py-1 rounded-lg text-xs sm:text-sm ">
                           {pkg.discount}
                         </div>
                       </div>
@@ -290,7 +297,7 @@ export default function Packages() {
                           <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3">What's Included:</h4>
                           <div className="grid gap-2">
                             {pkg.features.map((feature, idx) => (
-                              <div key={idx} className="flex items-center bg-gray-50 p-2 rounded-lg transform transition-all duration-300 hover:bg-gray-100 hover:translate-x-1">
+                              <div key={idx} className="flex items-center bg-gray-50 p-2 rounded-lg">
                                 <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
                                 <span className="text-sm font-medium">{feature}</span>
                               </div>
@@ -299,7 +306,10 @@ export default function Packages() {
                         </div>
 
                         {/* Get Estimate Button - Moved to bottom */}
-                        <Button className="bg-green-500 hover:bg-green-600 text-white w-full py-3 text-base font-semibold transition-all duration-300 hover:scale-105">
+                        <Button
+                          className="bg-gray-900 text-white w-full py-3 text-base font-semibold transition-all duration-300 hover:bg-green-600"
+                          onClick={() => getEstimate(pkg)}
+                        >
                           Get Estimate
                         </Button>
                       </div>
@@ -312,14 +322,16 @@ export default function Packages() {
 
           {/* Mobile Dots Indicator */}
           <div className="flex justify-center mb-4">
-            <div className="flex space-x-2">
+            <div className="flex gap-2">
               {packages.map((_, index) => (
                 <button
                   key={index}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 hover:scale-125 ${
-                    index === currentImageIndex ? "bg-green-500 w-6 sm:w-8" : "bg-gray-300"
-                  }`}
                   onClick={() => scrollToIndex(index)}
+                  className={`h-3 w-3 rounded-full transition-all duration-500 transform hover:scale-125 ${
+                    index === currentImageIndex
+                      ? "bg-gradient-to-r from-green-500 to-green-600 shadow-lg"
+                      : "bg-gray-300 hover:bg-gray-400 hover:shadow-md"
+                  }`}
                 />
               ))}
             </div>
@@ -331,7 +343,7 @@ export default function Packages() {
               <Card
                 key={pkg.id}
                 className={`transition-all duration-300 cursor-pointer hover:shadow-md transform hover:scale-105 ${
-                  index === currentImageIndex ? "ring-1 ring-green-500 shadow-lg bg-white scale-105" : ""
+                  index === currentImageIndex ? " shadow-xl bg-white scale-105" : ""
                 }`}
                 onClick={() => scrollToIndex(index)}
               >
@@ -362,7 +374,7 @@ export default function Packages() {
                   </div>
                     {/* Get Estimate Button */}
                     <Button
-                      className="w-full bg-green-500 hover:bg-green-600 text-white py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105"
+                      className="w-full bg-gray-900 hover:bg-green-600 text-white py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105"
                       onClick={(e) => {
                         e.stopPropagation()
                       }}
@@ -478,17 +490,22 @@ export default function Packages() {
               </div>
             </div>
 
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-4 space-x-2">
-              {packages.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
-                    index === currentImageIndex ? "bg-green-500 w-8" : "bg-gray-300"
-                  }`}
-                  onClick={() => setCurrentImageIndex(index)}
-                />
-              ))}
+            {/* Desktop Slider Indicator */}
+            <div className="flex justify-center mt-4">
+              <div className="flex gap-2 justify-center items-center">
+                {packages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`h-3 w-3 rounded-full transition-all duration-500 transform hover:scale-125 ${
+                      index === currentImageIndex
+                        ? "bg-gradient-to-r from-green-500 to-green-600 shadow-lg"
+                        : "bg-gray-300 hover:bg-gray-400 hover:shadow-md"
+                    }`}
+                    aria-label={`Go to package ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
@@ -504,12 +521,12 @@ export default function Packages() {
 
           {/* Right Side - Preview Cards */}
           <div className="w-64 flex-shrink-0">
-            <div className="space-y-2 h-full flex flex-col">
+            <div className="space-y-4 h-full flex flex-col">
               {packages.map((pkg, index) => (
                 <Card
                   key={pkg.id}
                   className={`transition-all duration-300 cursor-pointer hover:border-gray-300 flex-1 transform hover:scale-105 border ${
-                    index === currentImageIndex ? "ring-1 ring-green-500 border-green-200 bg-white scale-105" : "border-gray-200"
+                    index === currentImageIndex ? "shadow-xl bg-white scale-105" : "border-gray-200 shadow-sm"
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                   onClick={() => setCurrentImageIndex(index)}
