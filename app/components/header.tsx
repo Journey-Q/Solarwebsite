@@ -45,7 +45,7 @@ export default function Header() {
             <nav className="hidden lg:flex items-center space-x-2">
               <Link 
                 href="#home" 
-                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-4 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/20"
@@ -55,7 +55,7 @@ export default function Header() {
               </Link>
               <Link 
                 href="#about" 
-                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-4 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/20"
@@ -65,7 +65,7 @@ export default function Header() {
               </Link>
               <Link 
                 href="#packages" 
-                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-4 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/20"
@@ -75,7 +75,7 @@ export default function Header() {
               </Link>
               <Link 
                 href="#products" 
-                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-4 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/20"
@@ -85,7 +85,7 @@ export default function Header() {
               </Link>
               <Link 
                 href="#works" 
-                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-4 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/20"
@@ -105,7 +105,7 @@ export default function Header() {
               </Link> */}
               <Link 
                 href="#contact" 
-                className={`font-medium text-md px-6 py-1.5 rounded-full transition-colors ${
+                className={`font-medium text-md px-4 py-1.5 rounded-full transition-colors ${
                   isScrolled 
                     ? "text-green-500 bg-white/15" 
                     : "text-white bg-white/20"
